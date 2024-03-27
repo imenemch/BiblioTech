@@ -1,4 +1,4 @@
-package biblioPrincipale.biblio_Gestion_Admin;
+package biblio_Gestion_Admin;
 
 public class ListeUsers {
 
