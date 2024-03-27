@@ -1,6 +1,6 @@
-package biblioPrincipale.biblio_Gestion_Admin;
+package biblio_Gestion_Admin;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -64,13 +64,20 @@ public class CatalogueAdmin extends JFrame {
         // Ajout d'un champ de recherche
         searchField = new JTextField(20);
         JButton searchButton = new JButton("Rechercher");
+        JButton buttonEdit = new JButton("Modifier");
+        JButton buttonSupp = new JButton("Supprimer");
+        JButton buttonRetour = new JButton("Retour");
         JPanel searchPanel = new JPanel();
+        searchPanel.add(buttonRetour);
+        searchPanel.add(Box.createRigidArea(new Dimension(60, 0)));
         searchPanel.add(new JLabel("Rechercher par titre : "));
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
+        searchPanel.add(buttonEdit);
+        searchPanel.add(buttonSupp);
         add(searchPanel, BorderLayout.NORTH);
 
-        
+
         // Action du bouton de recherche
         searchButton.addActionListener(e -> {
             String searchTerm = searchField.getText().trim();
@@ -85,12 +92,12 @@ public class CatalogueAdmin extends JFrame {
         setVisible(true);
     }
 
-    
+
     // Méthode pour rechercher un livre par titre
     private void rechercherLivreParTitre(String titre) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0); // Effacer le contenu actuel de la table
-        
+
         // Connexion à la base de données et récupération des données
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bibliotech", "root", "")) {
             String query = "SELECT livres.id_livre, livres.titre, livres.genre, livres.ref, livres.disponibilité, livres.date_pub, livres.nb_copie, auteurs.nom, auteurs.prenom " +
@@ -117,14 +124,14 @@ public class CatalogueAdmin extends JFrame {
             ex.printStackTrace();
         }
     }
-    
-    
+
+
 
     // Méthode pour charger tous les livres dans le catalogue
     private void chargerTousLesLivres() {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0); // Effacer le contenu actuel de la table
-        
+
         // Connexion à la base de données et récupération des données
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bibliotech", "root", "")) {
             String query = "SELECT livres.id_livre, livres.titre, livres.genre, livres.ref, livres.disponibilité, livres.date_pub, livres.nb_copie, auteurs.nom, auteurs.prenom " +
@@ -149,11 +156,13 @@ public class CatalogueAdmin extends JFrame {
             ex.printStackTrace();
         }
     }
-    
+
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(CatalogueAdmin::new);
     }
-    
-    
+
+
 }

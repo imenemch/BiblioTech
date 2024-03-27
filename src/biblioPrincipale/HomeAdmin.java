@@ -64,12 +64,12 @@ public class HomeAdmin extends JFrame {
     // Méthode pour rediriger vers la page de la liste des users
     private void redirectToListeUsers() {
         dispose(); // Fermer la fenêtre actuelle
-        SwingUtilities.invokeLater(() -> new biblioPrincipale.biblio_Gestion_Admin.ListeUsers()); // Ouvrir la page de la liste des users
+        SwingUtilities.invokeLater(() -> new biblio_Gestion_Admin.ListeUsers()); // Ouvrir la page de la liste des users
     }
 
     // Méthode pour rediriger vers la page des favoris
     private void redirectTocatalogueAdmin() {
         dispose(); // Fermer la fenêtre actuelle
-        SwingUtilities.invokeLater(() -> new biblioPrincipale.biblio_Gestion_Admin.CatalogueAdmin()); // Ouvrir la page du catalogue des admins
+        SwingUtilities.invokeLater(() -> new biblio_Gestion_Admin.CatalogueAdmin()); // Ouvrir la page du catalogue des admins
     }
 }
